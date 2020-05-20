@@ -157,6 +157,7 @@ public class MazeServiceTest {
     public void gridIsReturnedWhenNeighbourExistsInThatDirection(){
         Grid grid = new Grid(0, 1);
         mazeService.travelled(grid);
+        mazeService.removeWall(grid, 1);
         assertNotNull(mazeService.getGridForDirection(grid, 1));
     }
 }
