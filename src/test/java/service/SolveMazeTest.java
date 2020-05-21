@@ -62,10 +62,9 @@ public class SolveMazeTest {
         Grid grid = new Grid(0,0);
         Grid next = new Grid(1, 0);
         given(mazeService.getGridForDirection(grid, 1)).willReturn(next);
-        Grid move = solveMaze.move(grid, 1);
+        solveMaze.move(grid, 1);
         verify(mazeService).path(next);
         verify(mazeService).travelled(next);
-        assertEquals(next, move);
     }
 
     @Test
@@ -88,16 +87,14 @@ public class SolveMazeTest {
         Grid grid = new Grid(0,0);
         Grid next = new Grid(1, 0);
         given(mazeService.getGridForDirection(grid, 1)).willReturn(next);
-        Grid move = solveMaze.move(grid, 1);
+        solveMaze.move(grid, 1);
         verify(mazeService).path(next);
         verify(mazeService).travelled(next);
-        assertEquals(next, move);
         Grid current = new Grid(1,0);
         given(mazeService.getGridForDirection(current, 3)).willReturn(current);
         Grid reverseMove = solveMaze.move(current, 3);
         verify(mazeService).removePath(current);
         verify(mazeService).removeTravelled(current);
-        assertEquals(current, reverseMove);
     }
 
     @Test
