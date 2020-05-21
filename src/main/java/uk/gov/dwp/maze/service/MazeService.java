@@ -1,6 +1,5 @@
 package uk.gov.dwp.maze.service;
 
-import uk.gov.dwp.maze.exception.UnableToBuildMazeException;
 import uk.gov.dwp.maze.model.Cell;
 import uk.gov.dwp.maze.model.Grid;
 import uk.gov.dwp.maze.model.Maze;
@@ -16,9 +15,9 @@ public class MazeService {
   public static final int DOWN = 2;
   Maze maze;
 
-  public Maze initMaze(int height, int width) throws UnableToBuildMazeException {
+  public Maze initMaze(int height, int width){
     if(height <= 0 || width <= 0){
-      throw new UnableToBuildMazeException("Cannot construct maze for height " + height + " width " + width);
+      throw new ArrayIndexOutOfBoundsException("Cannot construct maze for height " + height + " width " + width);
     }
     maze = new Maze();
     Cell[][] cells = new Cell[height][width];

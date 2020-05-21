@@ -1,16 +1,13 @@
 package uk.gov.dwp.maze.service;
 
-import uk.gov.dwp.maze.exception.UnableToBuildMazeException;
 import uk.gov.dwp.maze.model.Grid;
 import uk.gov.dwp.maze.model.Maze;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Stack;
+import java.util.*;
 
 public class GenerateMaze {
 
-  Stack<Grid> stack;
+  Deque<Grid> stack;
   Random random = new Random();
   private MazeService mazeService;
 
@@ -19,15 +16,9 @@ public class GenerateMaze {
   }
 
   public Maze generate(int height, int width, Grid start, Grid end)  {
-    stack = new Stack<Grid>();
+    stack = new ArrayDeque<>();
     int visitedCells = height * width;
-    Maze maze = null;
-    try {
-      maze = mazeService.initMaze(height, width);
-    } catch (UnableToBuildMazeException e) {
-      e.printStackTrace();
-      return null;
-    }
+    Maze maze = mazeService.initMaze(height, width);
     //initialize start, upper left, and finnish bottom right
     mazeService.markStart(start);
     mazeService.markEnd(end);

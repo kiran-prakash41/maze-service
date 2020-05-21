@@ -2,7 +2,6 @@ package service;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.gov.dwp.maze.exception.UnableToBuildMazeException;
 import uk.gov.dwp.maze.model.Grid;
 import uk.gov.dwp.maze.model.Maze;
 import uk.gov.dwp.maze.service.MazeService;
@@ -31,7 +30,7 @@ public class PrintMazeTest {
         printMaze = new PrintMaze();
     }
     @Test
-    public void print() throws UnableToBuildMazeException {
+    public void print() {
         MazeService mazeService = new MazeService();
         Maze maze = mazeService.initMaze(5, 5);
         mazeService.markStart(new Grid(0, 0));

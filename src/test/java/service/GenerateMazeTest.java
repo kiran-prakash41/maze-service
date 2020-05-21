@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import uk.gov.dwp.maze.exception.UnableToBuildMazeException;
 import uk.gov.dwp.maze.model.Grid;
 import uk.gov.dwp.maze.model.Maze;
 import uk.gov.dwp.maze.service.GenerateMaze;
@@ -37,7 +36,7 @@ public class GenerateMazeTest {
     }
 
     @Test
-    public void draw() throws UnableToBuildMazeException {
+    public void draw(){
         Grid start = new Grid(0, 0);
         Grid end = new Grid(2, 2);
         given(mazeService.initMaze(3, 3)).willReturn(maze);
@@ -49,15 +48,6 @@ public class GenerateMazeTest {
         verify(mazeService, times(8)).getDirection(any(Grid.class), any(Grid.class));
         verify(mazeService, times(8)).removeWall(any(Grid.class), anyInt());
         verify(mazeService, times(9)).visit(any(Grid.class));
-    }
-
-    @Test
-    public void returnEmptyMazeWhenHeightOrWidthIsZeroOrLessThanZero() throws UnableToBuildMazeException {
-        Grid start = new Grid(0, 0);
-        Grid end = new Grid(2, 2);
-        given(mazeService.initMaze(0, 0)).willThrow(new UnableToBuildMazeException("Failed to construct the maze"));
-        Maze maze = generateMaze.generate(0, 0, start, end);
-        assertNull(maze);
     }
 
     private List<Grid> buildGridList() {

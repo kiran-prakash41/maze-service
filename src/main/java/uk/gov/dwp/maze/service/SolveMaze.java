@@ -3,6 +3,8 @@ package uk.gov.dwp.maze.service;
 import uk.gov.dwp.maze.model.Grid;
 import uk.gov.dwp.maze.model.Maze;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import java.util.Stack;
 
@@ -11,7 +13,7 @@ import static uk.gov.dwp.maze.service.MazeService.*;
 public class SolveMaze{
 
   private MazeService mazeService;
-  Stack<Grid> travelGrid = new Stack<Grid>();
+  Deque<Grid> travelGrid = new ArrayDeque<>();
 
   public SolveMaze(MazeService mazeService) {
     this.mazeService = mazeService;

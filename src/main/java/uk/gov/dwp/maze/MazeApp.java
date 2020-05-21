@@ -1,7 +1,5 @@
 package uk.gov.dwp.maze;
 
-import uk.gov.dwp.maze.exception.UnableToBuildMazeException;
-import uk.gov.dwp.maze.model.Cell;
 import uk.gov.dwp.maze.model.Grid;
 import uk.gov.dwp.maze.model.Maze;
 import uk.gov.dwp.maze.service.GenerateMaze;
@@ -14,12 +12,12 @@ import java.util.Scanner;
 public class MazeApp {
 
 
-    public static void main(String[] args) throws UnableToBuildMazeException {
+    public static void main(String[] args) {
         MazeApp mazeApp = new MazeApp();
         mazeApp.generateMaze();
     }
 
-    private void generateMaze() throws UnableToBuildMazeException {
+    private void generateMaze() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the height of the grid ");
@@ -29,7 +27,7 @@ public class MazeApp {
         int width = scanner.nextInt();
 
         if(height <= 0 || width <= 0){
-            throw new UnableToBuildMazeException("Cannot build Maze for given height and width");
+            throw new ArrayIndexOutOfBoundsException("Cannot build Maze for given height and width");
         }
         System.out.print("Enter the row for the start point ");
 

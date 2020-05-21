@@ -2,7 +2,6 @@ package service;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.gov.dwp.maze.exception.UnableToBuildMazeException;
 import uk.gov.dwp.maze.model.Cell;
 import uk.gov.dwp.maze.model.Grid;
 import uk.gov.dwp.maze.model.Maze;
@@ -17,7 +16,7 @@ public class MazeServiceTest {
     private MazeService mazeService;
     Maze maze;
     @Before
-    public void setUp() throws UnableToBuildMazeException {
+    public void setUp(){
         mazeService = new MazeService();
         maze = mazeService.initMaze(5, 8);
     }
@@ -35,8 +34,8 @@ public class MazeServiceTest {
         assertEquals(8, maze.getCells()[0].length);
     }
 
-    @Test(expected=UnableToBuildMazeException.class)
-    public void initWithException() throws UnableToBuildMazeException {
+    @Test(expected=ArrayIndexOutOfBoundsException.class)
+    public void initWithException() {
         mazeService = new MazeService();
         maze = mazeService.initMaze(0, 0);
     }
